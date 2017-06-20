@@ -1,10 +1,26 @@
-const {spawn} = require('child_process')
+const espeak = require('./espeak')
+const EventEmitter = require('events')
 
-const say = text => new Promise(resolve => spawn('flite', ['-t', `"${text}"`]).on('exit', resolve))
-const espeak = text => new Promise(resolve => spawn('espeak', [`"${text}"`]).on('exit', resolve))
+const edward = new class Edward extends EventEmitter {
+  constructor() {
+    super()
+  }
+
+  say(text) {
+    console.log(text)
+    return espeak(text, {
+      language: 'en',
+      speed: 130,
+      voiceVariant: 'm3',
+      pitch: 35
+    })
+  }
+
+  shooCat() {
+    return this.say('Go away Koby. Shoo')
+  }
+}()
 
 Promise.resolve()
-  .then(() => say('hello. I am Edward, speaking through flite'))
-  .then(() => say('How are you today'))
-  .then(() => espeak('hello. I am Edward, speaking through espeak'))
-  .then(() => espeak('How are you today'))
+  // .then(() => edward.say('Hello. I am Edward'))
+  .then(() => edward.shooCat())
