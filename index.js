@@ -6,5 +6,5 @@ const espeak = text => new Promise(resolve => spawn('espeak', [`"${text}"`]).on(
 Promise.resolve()
   .then(() => say('hello. I am Edward, speaking through flite'))
   .then(() => say('How are you today'))
-  .then(() => espeak('hello. I am Edward, speaking through flite'))
+  .then(() => espeak('hello. I am Edward, speaking through espeak'))
   .then(() => espeak('How are you today'))
