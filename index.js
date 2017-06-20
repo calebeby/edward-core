@@ -1,1 +1,4 @@
-setInterval(() => console.log('this is core'), 1000)
+const {spawn} = require('child_process')
+
+spawn('speaker-test')
+
