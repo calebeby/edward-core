@@ -37,8 +37,13 @@ module.exports = (text, opts = {}) =>
       args.push(`-v${language}${voiceVariant}`)
     }
     console.log(['espeak', ...args].join(' '))
-    spawn('espeak', args).on(
+    const espeakProcess = spawn('espeak', args)
+    espeakProcess.on(
       'exit',
       code => (code === 0 ? resolve() : reject(code))
+    )
+    espeakProcess.stderr.on(
+      'data',
+      message => console.error(message.toString())
     )
   })

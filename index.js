@@ -9,10 +9,9 @@ const edward = new class Edward extends EventEmitter {
   say(text) {
     console.log(text)
     return espeak(text, {
-      language: 'en',
-      speed: 130,
-      voiceVariant: 'm3',
-      pitch: 35
+      language: 'mb-en1',
+      speed: 220,
+      pitch: 50
     })
   }
 
@@ -22,5 +21,6 @@ const edward = new class Edward extends EventEmitter {
 }()
 
 Promise.resolve()
-  // .then(() => edward.say('Hello. I am Edward'))
+  .then(() => edward.say('Hello. I am Edward'))
   .then(() => edward.shooCat())
+  .then(() => edward.say('It is to be sunny throughout the rest of the week'))
